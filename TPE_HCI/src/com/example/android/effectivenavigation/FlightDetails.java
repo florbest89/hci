@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
 //import android.view.Menu;
@@ -19,7 +20,9 @@ public class FlightDetails extends Activity {
 		
 		final ActionBar actionBar = getActionBar();
 		
+		actionBar.show();
 		actionBar.setHomeButtonEnabled(true);
+		actionBar.setDisplayHomeAsUpEnabled(true);
 		
 	}
 	
@@ -35,11 +38,19 @@ public class FlightDetails extends Activity {
 	@Override
     public boolean onOptionsItemSelected(MenuItem menuItem)
     {       
-		 android.app.FragmentManager fm= getFragmentManager();
-		 if(fm.getBackStackEntryCount()>0){
-		   fm.popBackStack();
-		} 
-        return true;
+		 
+        switch (menuItem.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+
+            default:
+                return super.onOptionsItemSelected(menuItem);
+        }
+		
+		return true;
+		
     }
 
 

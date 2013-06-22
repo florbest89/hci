@@ -14,17 +14,19 @@ import android.widget.TextView;
 
 public class OptionsAdapter extends ArrayAdapter<String> {
 
-	List<String> flights = new ArrayList<String>();
+	List<String> deals = new ArrayList<String>();
 	int layoutResId;
 	Context context;
+	SectionType type;
 
 	public OptionsAdapter(Context context, int layoutResId,
-			List<String> options) {
+			List<String> options,SectionType typ) {
 
 		super(context, layoutResId, options);
 		this.layoutResId = layoutResId;
-		flights = options;
+		deals = options;
 		this.context = context;
+		type = typ;
 		
 
 	}
@@ -52,7 +54,7 @@ public class OptionsAdapter extends ArrayAdapter<String> {
 	 
 	holder = new ItemHolder();
 	
-	holder.plane = (ImageView)row.findViewById(R.id.plane);
+	holder.icon = (ImageView)row.findViewById(R.id.icon);
 	holder.title = (TextView)row.findViewById(R.id.txtTitle);
 	 
 	row.setTag(holder);
@@ -61,16 +63,21 @@ public class OptionsAdapter extends ArrayAdapter<String> {
 	{
 	holder = (ItemHolder)row.getTag();
 	}
-	 
-	holder.title.setText(flights.get(position));
-	holder.plane.setImageResource(R.drawable.plane);
+	
+	
+	holder.title.setText(deals.get(position));
+	switch(type){
+		case DEAL: holder.icon.setImageResource(R.drawable.sales);break;
+		case FLIGHT: holder.icon.setImageResource(R.drawable.plane); break;
+	}
+	
 	
 	 
 	return row;
 	}
 
 	static class ItemHolder{
-		ImageView plane;
+		ImageView icon;
 		TextView title;
 		
 	}

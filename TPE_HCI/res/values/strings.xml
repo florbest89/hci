@@ -27,5 +27,6 @@
     <string name="title_activity_flight_details">FlightDetails</string>
     <string name="action_settings">Settings</string>
     <string name="nFlight">A40</string>
+    <string name="addFlight">Añadir Vuelo</string>
 
 </resources>
